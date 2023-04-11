@@ -1,0 +1,38 @@
+CREATE TABLE categories
+(
+categoryID INT AUTO_INCREMENT PRIMARY KEY,
+categoryNAME VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE employees
+(
+id INT AUTO_INCREMENT PRIMARY KEY,
+first_name VARCHAR(50),
+last_name VARCHAR(50),
+department VARCHAR(50),
+location VARCHAR(50),
+categoryID INT,
+CONSTRAINT fk_category FOREIGN KEY (categoryId)
+REFERENCES categories(categoryId)
+);
+INSERT into categories (categoryNAME) VALUES('IT'),('Finance'),('Marketing');
+
+INSERT into employees(first_name,last_name,department,location,categoryID)VALUES('Harshad', 'Kuwar', 'Marketing', 'Pune',3),('Anurag', 'Rajput', 'IT', 'Mumbai',1),
+('Chaitali', 'Tarle', 'IT', 'Chennai',1),('Pranjal', 'Patil', 'IT', 'Chennai',1),('Suraj', 'Tripathi', 'Marketing', 'Pune',3),
+('Roshni', 'Jadhav', 'Finance', 'Bangalore',2),('Sandhya', 'Jain', 'Finance', 'Bangalore',2);
+
+SELECT first_name,categoryID FROM  employees WHERE categoryID=1;
+
+SELECT *FROM employees WHERE Department = "IT" AND Location = "Chennai";
+
+SELECT *FROM employees WHERE Department = "IT" OR Location = "Chennai";
+
+UPDATE employees SET Location='Hyderabad'WHERE Department='Marketing';
+
+SELECT * FROM  employees;
+
+UPDATE employees SET Location='Chennai'WHERE Department='Marketing'AND first_name='Suraj';
+
+SELECT * FROM  employees WHERE Department='Marketing';
+
+SELECT first_name AS "Name", department AS "Genere" FROM employees;

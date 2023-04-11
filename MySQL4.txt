@@ -1,0 +1,40 @@
+CREATE TABLE categories
+(
+categoryID INT AUTO_INCREMENT,
+ItemNAME VARCHAR(50) NOT NULL,
+PRIMARY KEY(categoryID)
+);
+
+INSERT into categories (ItemNAME) VALUES('Mobile'),('earphones'),('charger');
+
+CREATE TABLE orders (
+id INT NOT NULL AUTO_INCREMENT,
+customer_id INT NOT NULL,
+order_date DATE NOT NULL,
+price INT NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (customer_id) REFERENCES categories(categoryID));
+
+INSERT into orders(customer_id,order_date,price)
+VALUES(1,'2023/02/11', 33),(2,'2023/02/12', 30),(3,'2023/02/13',11),(3,'2023/02/14',10);
+
+/* 
+You will get error when customer_id exceeds categoryID example cannot add (4,'2023/02/13',11) line. 
+*/
+
+select * from orders;
+
+SELECT categories.ItemNAME, orders.order_date,orders.price
+FROM categories
+INNER JOIN orders
+ON categories.categoryID = orders.customer_id;
+
+SELECT categories.ItemNAME, orders.order_date,orders.price
+FROM categories
+LEFT JOIN orders
+ON categories.categoryID = orders.customer_id;
+
+SELECT categories.ItemNAME, orders.order_date,orders.price
+FROM categories
+RIGHT JOIN orders
+ON categories.categoryID = orders.customer_id;

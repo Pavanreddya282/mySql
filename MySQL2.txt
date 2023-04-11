@@ -1,0 +1,70 @@
+CREATE TABLE employees
+(
+id INT AUTO_INCREMENT,
+first_name VARCHAR(50),
+last_name VARCHAR(50),
+department VARCHAR(50),
+location VARCHAR(50),
+PRIMARY KEY(id)
+);
+
+INSERT into employees(first_name,last_name,department,location)VALUES('Harshad', 'Kuwar', 'Marketing', 'Pune'),('Anurag', 'Rajput', 'IT', 'Mumbai'),
+('Chaitali', 'Tarle', 'IT', 'Chennai'),('Pranjal', 'Patil', 'IT', 'Chennai'),('Suraj', 'Tripathi', 'Marketing', 'Pune'),
+('Roshni', 'Jadhav', 'Finance', 'Bangalore'),('Sandhya', 'Jain', 'Finance', 'Bangalore');
+
+SELECT * FROM  employees;
+
+SELECT * FROM employees WHERE location='Bangalore';
+
+SELECT first_name FROM employees WHERE department='Finance';
+
+SELECT first_name,last_name FROM employees WHERE department='IT';
+
+UPDATE employees SET location='Hyderabad' WHERE location='Chennai';
+
+SELECT * FROM  employees;
+
+ALTER TABLE employees ADD esalary VARCHAR(50);
+
+SELECT * FROM  employees;
+
+UPDATE employees SET esalary='60000';
+
+UPDATE employees SET esalary='80000' WHERE location='Bangalore';
+
+UPDATE employees SET esalary='50000' WHERE department='Marketing';
+
+SELECT * FROM  employees;
+
+INSERT into employees(first_name,last_name,department,location,esalary)VALUES('Hazshad', 'Ruwar', 'Killing', 'Pak','100000'),('Nurag', 'Rajpot', 'Killing', 'jamkas','100000');
+
+SELECT * FROM  employees;
+
+DELETE FROM employees WHERE department='Killing';
+
+SELECT * FROM  employees;
+/*
+TRUNCATE TABLE employees;
+
+SELECT * FROM  employees;
+
+desc employees;
+*/
+SELECT DISTINCT location FROM employees;
+
+SELECT DISTINCT department FROM employees;
+
+SELECT * FROM employees ORDER BY first_name;
+
+SELECT first_name,location,esalary FROM employees ORDER BY first_name;
+
+SELECT first_name,COUNT(esalary) FROM employees GROUP BY first_name;
+
+SELECT MIN(esalary)AS "Minimum Salary" FROM employees;
+
+SELECT MAX(esalary)AS "Maximum Salary" FROM employees;
+
+SELECT AVG(esalary)AS "Maximum Salary" FROM employees;
+/*
+SELECT first_name SUM(esalary)AS 'Total Salary' FROM employees GROUP BY first_name HAVING SUM (esalary)>'55000';
+*/

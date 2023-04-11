@@ -1,0 +1,37 @@
+CREATE TABLE customers (
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(50) NOT NULL,
+email VARCHAR(100) NOT NULL,
+PRIMARY KEY (id));
+
+INSERT INTO customers (name, email) VALUES('John', 'john@example.com'),('Jane', 'jane@example.com'),('Bob', 'bob@example.com');
+
+CREATE TABLE orders (
+id INT NOT NULL AUTO_INCREMENT,
+customer_id INT NOT NULL,
+order_date DATE NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (customer_id) REFERENCES customers(id));
+
+INSERT INTO orders (customer_id, order_date) VALUES(1, '2022-01-01'),(1, '2022-02-05'),(2, '2022-03-10'),(3, '2022-03-15');
+
+select * from orders;
+
+SELECT customers.name, orders.order_date
+FROM customers
+INNER JOIN orders
+ON customers.id = orders.customer_id;
+
+SELECT customers.name, orders.order_date
+FROM customers
+LEFT JOIN orders
+ON customers.id = orders.customer_id;
+
+INSERT INTO customers (name, email) VALUES('Jhon', 'jhon@example.com');
+INSERT INTO orders (customer_id, order_date) VALUES(4, '2022-01-01');
+
+
+SELECT customers.name, orders.order_date
+FROM customers
+RIGHT JOIN orders
+ON customers.id = orders.customer_id;
